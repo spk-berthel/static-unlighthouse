@@ -22,7 +22,7 @@ jobs:
       - name: Deploy report to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: './.unlighthouse'
+          publish-dir: '.'
           production-branch: main
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}

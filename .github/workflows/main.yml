@@ -17,12 +17,12 @@ jobs:
         run: npm add -g @unlighthouse/cli puppeteer
 
       - name: Unlighthouse assertions and client
-        run: unlighthouse-ci --site netflix.com --build-static
+        run: unlighthouse-ci --site netflix.com --build-static --outputPath dist 
 
       - name: Deploy report to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: './.unlighthouse'
+          publish-dir: './dist'
           production-branch: main
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}

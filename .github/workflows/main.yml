@@ -16,6 +16,12 @@ jobs:
       - name: Install Dependencies
         run: npm add -g @unlighthouse/cli puppeteer
 
+      - name: Use Node.js v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: v16
+          registry-url: https://registry.npmjs.org/
+
       - name: Unlighthouse assertions and client
         run: unlighthouse-ci --site netflix.com --build-static
       - name: Deploy report to Netlify

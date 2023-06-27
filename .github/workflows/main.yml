@@ -13,15 +13,29 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install Dependencies
-        run: npm add -g @unlighthouse/cli puppeteer
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.1
 
-      - name: Unlighthouse assertions and client
-        run: unlighthouse-ci --site netflix.com --build-static
-      - name: Deploy report to Netlify
+      - name: Use Node.js v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: v16
+          registry-url: https://registry.npmjs.org/
+          cache: "pnpm"
+
+      - name: Install Dependencies
+        run: pnpm install && pnpm add puppeteer
+
+      - name: PNPM build
+        run: pnpm run build
+
+      - name: Run Unlighthouse CI
+        run: pnpm ci:docs && mv .unlighthouse dist
+
+      - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: '/.unlighthouse'
+          publish-dir: './dist'
           production-branch: main
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}

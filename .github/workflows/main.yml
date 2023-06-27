@@ -17,7 +17,7 @@ jobs:
         run: npm add -g @unlighthouse/cli puppeteer
 
       - name: Unlighthouse assertions and client
-        run: unlighthouse-ci --site netflix.com --build-static --outputPath dist 
+        run: unlighthouse-ci --site tdc.dk --build-static --outputPath dist 
 
       - name: Deploy report to Netlify
         uses: nwtgck/actions-netlify@v1.2

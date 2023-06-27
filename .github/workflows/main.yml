@@ -18,6 +18,7 @@ jobs:
 
       - name: Unlighthouse assertions and client
         run: unlighthouse-ci --site netflix.com --build-static
+
       - name: Deploy report to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:

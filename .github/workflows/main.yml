@@ -18,7 +18,6 @@ jobs:
 
       - name: Unlighthouse assertions and client
         run: unlighthouse-ci --site tdc.dk --build-static --outputPath dist 
-
       - name: Deploy report to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
